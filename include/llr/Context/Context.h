@@ -1,4 +1,4 @@
-//===- llr/Memory/Memory.h - Memory access interface --------*- C++ -*0000-===//
+//===- llr/Context/Context.h - Memory access interface --------*- C++ -*---===//
 //
 //                     The LLVM Compiler Infrastructure
 //
@@ -10,19 +10,15 @@
 #ifndef LLR_CONTEXT_CONTEXT_H
 #define LLR_CONTEXT_CONTEXT_H
 
-namespace llvm {
-class ArrayRef;
-}
-
-
 namespace llr
 {
 
+class Stack;
 class Memory;
 class RegisterFile;
 
 class Context {
-  using ArrayRef = llvm::ArrayRef;
+
 public:
 
   virtual ~Context() = default;
@@ -30,6 +26,8 @@ public:
   virtual Memory& getMemory() const = 0;
 
   virtual RegisterFile& getRegisterFile() const = 0;
+
+  virtual Stack& getStack() const = 0;
 
 
 }; // class Memory

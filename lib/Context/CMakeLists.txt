@@ -1,5 +1,6 @@
 add_llr_library(llrContext
   Context.cpp
+  ContextBase.cpp
 
   ADDITIONAL_HEADER_DIRS
   $(LLR_INCLUDE_DIR)/llr/Context
@@ -10,4 +11,5 @@ add_llr_library(llrContext
   LINK_LIBS
     llrMemory
     llrRegisters
+    llrStack
 )
