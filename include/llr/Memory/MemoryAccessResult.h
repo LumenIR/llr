@@ -10,29 +10,51 @@
 #ifndef LLR_MEMORY_MEMORYACCESSRESULT_H
 #define LLR_MEMORY_MEMORYACCESSRESULT_H
 
+#include "llvm/ADT/ArrayRef.h"
 
-namespace llvm {
-  class ArrayRef;
-}
+#include <vector>
+#include <cassert>
+#include <cstdint>
+
+//namespace llvm {
+//  class ArrayRef;
+//}
 
 namespace llr {
 
-class enum MemoryAccessStatus {
-  MAS_Forbidden,
-  MAS_ReadOK,
-  MAS_WriteOK
+enum class MemoryAccessStatus {
+  Forbidden,
+  NotFound,
+  Uninit,
+  ReadOK,
+  WriteOK
 };
 
 
 class MemoryAccessResult {
+  using MAS = enum MemoryAccessStatus;
+  using ArrayRef = llvm::ArrayRef<uint8_t>;
+public:
+  MemoryAccessResult(MAS S) {
+    Stat = S;
+  }
+
+  MemoryAccessStatus getStatus() {
+    return Stat;
+  }
+
+  size_t getSize() {
+    return data.size();
+  }
+
+  ArrayRef getData() {
+    assert(Stat == MAS::ReadOK && "Trying to access data of failed memory read");
+    return data;
+  }
 
 public:
-  MemoryAccessStatus getStatus();
-  size_t getSize();
-
-  ArrayRef getData();
-
-public:
+  MemoryAccessStatus Stat;
+  std::vector<uint8_t> data;
 
 }; // class MemoryAccessResult
 

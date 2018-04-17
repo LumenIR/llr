@@ -7,14 +7,16 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef LLR_COMPONENTS_MEMORY_H
-#define LLR_COMPONENTS_MEMORY_H
+#ifndef LLR_MEMORY_MEMORY_H
+#define LLR_MEMORY_MEMORY_H
+
+#include "llvm/ADT/ArrayRef.h"
 
 #include <cstdint>
 
-namespace llvm {
-class ArrayRef;
-}
+//namespace llvm {
+//class ArrayRef;
+//}
 
 namespace llr {
 
@@ -22,7 +24,7 @@ class MemoryAccessResult;
 class MemoryAddress;
 
 class Memory {
-  using ArrayRef = llvm::ArrayRef;
+  using ArrayRef = llvm::ArrayRef<uint8_t>;
   using size_t = std::size_t;
 
 public:
@@ -35,5 +37,5 @@ public:
 
 } // end namespace llr
 
-#endif //LLR_COMPONENTS_MEMORY_H
+#endif //LLR_MEMORY_MEMORY_H
 
