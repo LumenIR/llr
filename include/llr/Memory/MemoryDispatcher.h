@@ -7,8 +7,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef LLR_LIB_MEMORY_MEMORYDISPATCHER_H
-#define LLR_LIB_MEMORY_MEMORYDISPATCHER_H
+#ifndef LLR_MEMORY_MEMORYDISPATCHER_H
+#define LLR_MEMORY_MEMORYDISPATCHER_H
 
 #include "llr/Memory/Memory.h"
 
@@ -28,8 +28,15 @@ class MemoryDispatcher : public Memory {
   using MemoryMap = llvm::IntervalMap<uint64_t, Memory*>;
 
 public:
+  MemoryDispatcher();
+
   virtual MemoryAccessResult write(const MemoryAddress &Addr, const ArrayRef &data) override;
   virtual MemoryAccessResult read (const MemoryAddress &Addr, size_t size) override;
+
+  virtual const MemoryAddress begin_address() const override;
+  virtual const MemoryAddress end_address() const override;
+
+  void registerMemory(Memory*);
 
 private:
   MemoryMap::Allocator MemoryMapAllocator;
@@ -38,5 +45,5 @@ private:
 
 } // end namespace llr
 
-#endif //LLR_LIB_MEMORY_MEMORYDISPATCHER_H
+#endif // LLR_MEMORY_MEMORYDISPATCHER_H
 

@@ -33,6 +33,10 @@ public:
   virtual MemoryAccessResult write(const MemoryAddress &Addr, const ArrayRef &data) = 0;
   virtual MemoryAccessResult read (const MemoryAddress &Addr, size_t size)   = 0;
 
+  virtual const MemoryAddress begin_address() const = 0;
+  virtual const MemoryAddress end_address() const = 0;
+
+
 }; // class Memory
 
 } // end namespace llr

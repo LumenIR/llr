@@ -36,11 +36,14 @@ class MemoryAccessResult {
   using ArrayRef = llvm::ArrayRef<uint8_t>;
 public:
   MemoryAccessResult(MAS S) {
-    Stat = S;
+    Status = S;
   }
 
+  MemoryAccessResult(MAS S, ArrayRef d);
+
+
   MemoryAccessStatus getStatus() {
-    return Stat;
+    return Status;
   }
 
   size_t getSize() {
@@ -48,12 +51,12 @@ public:
   }
 
   ArrayRef getData() {
-    assert(Stat == MAS::ReadOK && "Trying to access data of failed memory read");
+    assert(Status == MAS::ReadOK && "Trying to access data of failed memory read");
     return data;
   }
 
 public:
-  MemoryAccessStatus Stat;
+  MemoryAccessStatus Status;
   std::vector<uint8_t> data;
 
 }; // class MemoryAccessResult
