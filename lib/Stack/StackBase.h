@@ -20,7 +20,6 @@ class ArrayRef;
 
 namespace llr {
 
-class ArrayRef;
 class MemoryAccessResult;
 class Memory;
 class RegisterFile;

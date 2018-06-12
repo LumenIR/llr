@@ -29,6 +29,8 @@ public:
 
   virtual Stack& getStack() const = 0;
 
+  virtual bool isRunning() const = 0;
+
 
 }; // class Memory
 
