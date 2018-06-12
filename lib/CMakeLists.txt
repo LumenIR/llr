@@ -1,5 +1,6 @@
 add_subdirectory(Context)
 add_subdirectory(Config)
+add_subdirectory(Decoder)
 add_subdirectory(Driver)
 add_subdirectory(Instruction)
 add_subdirectory(Memory)
