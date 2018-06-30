@@ -8,15 +8,15 @@
 using namespace llr;
 //using namespace llvm;
 
-Interpeter::Interpeter(Context &context, Fetcher &f, Decoder &d) :
+Interpreter::Interpreter(Context &context, Fetcher &f, Decoder &d) :
   Ctx(context),
-  decoder(d),
-  fetcher(f) {
+  fetcher(f),
+  decoder(d) {
 
 }
 
 
-void Interpeter::run() {
+void Interpreter::run() {
 
 
   while(Ctx.isRunning()) {

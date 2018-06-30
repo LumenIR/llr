@@ -7,8 +7,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef LLR_INTERPETER_INTERPETER_H
-#define LLR_INTERPETER_INTERPETER_H
+#ifndef LLR_INTERPRETER_INTERPRETER_H
+#define LLR_INTERPRETER_INTERPRETER_H
 
 namespace llr {
 
@@ -17,10 +17,10 @@ class Fetcher;
 class Decoder;
 
 
-class Interpeter {
+class Interpreter {
 public:
-  Interpeter(Context&, Fetcher&, Decoder&);
-  virtual ~Interpeter() = default;
+  Interpreter(Context&, Fetcher&, Decoder&);
+  virtual ~Interpreter() = default;
 
   void run();
 
@@ -33,4 +33,4 @@ private:
 
 } // end namespace llr
 
-#endif //LLR_INTERPETER_INTERPETER_H
+#endif //LLR_INTERPRETER_INTERPRETER_H
