@@ -1,5 +1,5 @@
 add_llr_library(llrDecoder
-  Decoder.cpp
+  LLRDecoder.cpp
 
   ADDITIONAL_HEADER_DIRS
   $(LLR_INCLUDE_DIR)/llr/Context

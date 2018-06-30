@@ -7,8 +7,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef LLR_DECODER_DECODER_H
-#define LLR_DECODER_DECODER_H
+#ifndef LLR_DECODER_LLRDECODER_H
+#define LLR_DECODER_LLRDECODER_H
 
 #include "llvm/ADT/ArrayRef.h"
 
@@ -17,7 +17,7 @@ namespace llr {
 
 class LLRInst;
 
-class Decoder {
+class LLRDecoder {
   using ArrayRef = llvm::ArrayRef<uint8_t>;
 
 public:
@@ -26,8 +26,8 @@ public:
 
   virtual LLRInst decode(ArrayRef) const = 0;
 
-}; // class Decoder
+}; // class LLRDecoder
 
 } // end namespace llr
 
-#endif //LLR_DECODER_DECODER_H
+#endif //LLR_DECODER_LLRDECODER_H
