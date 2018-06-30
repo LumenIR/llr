@@ -1,4 +1,4 @@
-//===- llr/Registers/Register.h - Memory access interface ---*- C++ -*-----===//
+//===- llr/Registers/LLRRegister.h - Register access interface ---*- C++ -*-----===//
 //
 //                     The LLVM Compiler Infrastructure
 //
@@ -7,8 +7,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef LLR_REGISTERS_REGISTER_H
-#define LLR_REGISTERS_REGISTER_H
+#ifndef LLR_REGISTERS_LLRREGISTER_H
+#define LLR_REGISTERS_LLRREGISTER_H
 
 #include "llvm/ADT/ArrayRef.h"
 
@@ -25,17 +25,17 @@ class RegisterAccessResult;
 
 
 
-class Register {
+class LLRRegister {
   using APFloat = llvm::APFloat;
   using APInt = llvm::APInt;
 
 public:
-  Register(const Register&) = delete;
-  Register(Register&&) = default;
-  virtual ~Register() = default;
+  LLRRegister(const LLRRegister&) = delete;
+  LLRRegister(LLRRegister&&) = default;
+  virtual ~LLRRegister() = default;
 
 protected:
-  Register(unsigned RegId, unsigned ClId, std::size_t size) :
+  LLRRegister(unsigned RegId, unsigned ClId, std::size_t size) :
     RegisterId(RegId),
     ClassId(ClId),
     RegisterSize(size) {
@@ -67,9 +67,9 @@ private:
   unsigned ClassId;
 
   std::size_t RegisterSize;
-}; // class Register
+}; // class LLRRegister
 
 } // end namespace llr
 
-#endif //LLR_REGISTERS_REGISTER_H
+#endif //LLR_REGISTERS_LLRREGISTER_H
 

@@ -20,7 +20,7 @@
 namespace llr {
 
 class RegisterBank;
-class Register;
+class LLRRegister;
 
 class LumenIRRegisterFile : public RegisterFile {
 public:
@@ -28,15 +28,15 @@ public:
 
   virtual ~LumenIRRegisterFile() = default;
 
-  virtual Register& getRegisterById(unsigned RegisterId) const override;
+  virtual LLRRegister& getRegisterById(unsigned RegisterId) const override;
 
 protected:
 //  RegisterBank &GPRRegisters;
 //  RegisterBank &SpecialRegisters;
 
-  Register *PC;
-  Register *SP;
-  Register *FP;
+  LLRRegister *PC;
+  LLRRegister *SP;
+  LLRRegister *FP;
 
 
 

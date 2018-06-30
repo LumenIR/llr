@@ -2,12 +2,13 @@
 #include "llr/Registers/RegisterAccessResult.h"
 
 #include <cassert>
+#include <cstdint>
 #include <algorithm>
 
 using namespace llvm;
 using namespace llr;
 
-using SetMode = llr::Register::SetMode;
+using SetMode = llr::LLRRegister::SetMode;
 
 
 RegisterAccessResult SimpleRegister::get() {

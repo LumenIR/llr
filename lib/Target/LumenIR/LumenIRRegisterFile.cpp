@@ -14,7 +14,7 @@ LumenIRRegisterFile::LumenIRRegisterFile() {
 
 }
 
-Register&  LumenIRRegisterFile::getRegisterById(unsigned regId) const {
+LLRRegister&  LumenIRRegisterFile::getRegisterById(unsigned regId) const {
   switch (regId) {
   case llvm::LumenIR::PC:    return *PC;
   case llvm::LumenIR::SP:    return *SP;

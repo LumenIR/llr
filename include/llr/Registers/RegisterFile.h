@@ -14,7 +14,7 @@
 namespace llr {
 
 class RegisterBank;
-class Register;
+class LLRRegister;
 
 class RegisterFile {
 
@@ -27,7 +27,7 @@ public:
   RegisterFile() = default;
 
 
-  virtual Register& getRegisterById(unsigned RegisterId) const = 0;
+  virtual LLRRegister& getRegisterById(unsigned RegisterId) const = 0;
 
 //  virtual RegisterBank& getRegisterBank(unsigned RegisterBankId) const = 0;
 

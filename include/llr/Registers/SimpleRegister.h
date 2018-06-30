@@ -10,7 +10,7 @@
 #ifndef LLR_REGISTERS_SIMPLEREGISTER_H
 #define LLR_REGISTERS_SIMPLEREGISTER_H
 
-#include "Register.h"
+#include "LLRRegister.h"
 
 #include "llvm/ADT/ArrayRef.h"
 
@@ -27,7 +27,7 @@ class RegisterAccessResult;
 
 
 
-class SimpleRegister : public Register {
+class SimpleRegister : public LLRRegister {
   using APFloat = llvm::APFloat;
   using APInt = llvm::APInt;
 
@@ -37,7 +37,7 @@ public:
   SimpleRegister(SimpleRegister&&) = default;
 
   SimpleRegister(unsigned RegId, unsigned ClId, std::size_t size) :
-    Register(RegId, ClId, size) {
+    LLRRegister(RegId, ClId, size) {
     data_storage.resize(size);
   }
 
