@@ -76,3 +76,19 @@ macro(add_llr_symlink name dest)
   llvm_install_symlink(${name} ${dest} ALWAYS_GENERATE)
 endmacro()
 
+
+macro(add_llr_target target_name)
+  # TODO make it more reliable
+  # CMAKE_CURRENT_BINARY_DIR
+  # tools/llr/lib/Target/<Target>/
+  # ->
+  # lib/Target/<Target>
+
+  include_directories(BEFORE
+    ${CMAKE_CURRENT_BINARY_DIR}/../../../../../lib/Target/${target_name}
+    ${CMAKE_CURRENT_SOURCE_DIR})
+  add_llr_library(llrTarget${target_name} ${ARGN})
+endmacro(add_llr_target)
+
+
+
