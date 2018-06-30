@@ -1,4 +1,4 @@
-//===- llr/lib/Context/ContextBase.h - Context Base Class ----*- C++ -*----===//
+//===- llr/lib/Context/ContextBase.h - LLRContext Base Class --*- C++ -*----===//
 //
 //                     The LLVM Compiler Infrastructure
 //
@@ -7,10 +7,10 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef LLR_LIB_CONTEXT_CONTEXTBASE_H
-#define LLR_LIB_CONTEXT_CONTEXTBASE_H
+#ifndef LLR_LIB_CONTEXT_LLRCONTEXTBASE_H
+#define LLR_LIB_CONTEXT_LLRCONTEXTBASE_H
 
-#include "llr/Context/Context.h"
+#include "llr/Context/LLRContext.h"
 
 namespace llr
 {
@@ -19,7 +19,7 @@ class Memory;
 class RegisterFile;
 class Stack;
 
-class ContextBase : public Context {
+class LLRContextBase : public LLRContext {
 
 public:
   ContextBase(Memory *, RegisterFile *, Stack *);
@@ -35,9 +35,9 @@ private:
   RegisterFile *RegisterFile_ptr;
   Stack *Stack_ptr;
 
-}; // class ContextBase
+}; // class LLRContextBase
 
 } // end namespace llr
 
-#endif //LLR_LIB_CONTEXT_CONTEXTBASE_H
+#endif //LLR_LIB_CONTEXT_LLRCONTEXTBASE_H
 

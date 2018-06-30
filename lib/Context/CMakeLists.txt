@@ -1,6 +1,6 @@
 add_llr_library(llrContext
-  Context.cpp
-  ContextBase.cpp
+  LLRContext.cpp
+  LLRContextBase.cpp
 
   ADDITIONAL_HEADER_DIRS
   $(LLR_INCLUDE_DIR)/llr/Context

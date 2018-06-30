@@ -1,4 +1,4 @@
-//===- llr/Context/Context.h - Memory access interface --------*- C++ -*---===//
+//===- llr/Context/Context.h - LLR execution context interface -*- C++ -*---===//
 //
 //                     The LLVM Compiler Infrastructure
 //
@@ -7,8 +7,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef LLR_CONTEXT_CONTEXT_H
-#define LLR_CONTEXT_CONTEXT_H
+#ifndef LLR_CONTEXT_LLRCONTEXT_H
+#define LLR_CONTEXT_LLRCONTEXT_H
 
 namespace llr
 {
@@ -17,11 +17,11 @@ class Stack;
 class Memory;
 class RegisterFile;
 
-class Context {
+class LLRContext {
 
 public:
 
-  virtual ~Context() = default;
+  virtual ~LLRContext() = default;
 
   virtual Memory& getMemory() const = 0;
 
@@ -32,9 +32,9 @@ public:
   virtual bool isRunning() const = 0;
 
 
-}; // class Memory
+}; // class LLRContext
 
 } // end namespace llr
 
-#endif //LLR_CONTEXT_CONTEXT_H
+#endif //LLR_CONTEXT_LLRCONTEXT_H
 
