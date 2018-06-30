@@ -11,8 +11,9 @@ using namespace llr;
 using namespace llvm;
 
 using MAS = MemoryAccessStatus;
+using MAR = MemoryAccessResult;
 
-MemoryAccessResult SimpleMemory::write(const MemoryAddress &Addr, const ArrayRef &data) {
+MAR SimpleMemoryManager::write(const MemoryAddress &Addr, const ArrayRef &data) {
 
   MemoryAccessResult res = Dispatcher.write(Addr, data);
 
@@ -27,14 +28,14 @@ MemoryAccessResult SimpleMemory::write(const MemoryAddress &Addr, const ArrayRef
   }
 }
 
-MemoryAccessResult SimpleMemory::read(const MemoryAddress &Addr, size_t size) {
+MAR SimpleMemoryManager::read(const MemoryAddress &Addr, size_t size) {
   return Dispatcher.read(Addr, size);
 }
 
-const MemoryAddress SimpleMemory::begin_address() const {
+const MemoryAddress SimpleMemoryManager::begin_address() const {
   return Dispatcher.begin_address();
 }
 
-const MemoryAddress SimpleMemory::end_address() const {
+const MemoryAddress SimpleMemoryManager::end_address() const {
   return Dispatcher.begin_address();
 }

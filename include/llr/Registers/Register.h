@@ -10,8 +10,11 @@
 #ifndef LLR_REGISTERS_REGISTER_H
 #define LLR_REGISTERS_REGISTER_H
 
+#include "llvm/ADT/ArrayRef.h"
+
+#include <cstdint>
+
 namespace llvm {
-  class ArrayRef;
   class APInt;
   class APFloat;
 }
@@ -25,11 +28,18 @@ class RegisterAccessResult;
 class Register {
   using APFloat = llvm::APFloat;
   using APInt = llvm::APInt;
-  using ArrayRef = llvm::ArrayRef;
 
+public:
   Register(const Register&) = delete;
   Register(Register&&) = default;
   virtual ~Register() = default;
+
+protected:
+  Register(unsigned RegId, unsigned ClId, std::size_t size) :
+    RegisterId(RegId),
+    ClassId(ClId),
+    RegisterSize(size) {
+  }
 
 public:
   //llvm registers mapping
@@ -46,12 +56,17 @@ public:
     SEXT
   };
 
-  virtual RegisterAccessResult set(const ArrayRef data, SetMode mode = SetMode::EXACT) = 0;
+  virtual RegisterAccessResult set(const llvm::ArrayRef<uint8_t> data, SetMode mode = SetMode::EXACT) = 0;
 
-  RegisterAccessResult set(const APInt &IntValue, SetMode mode = SetMode::EXACT);
-  RegisterAccessResult set(const APFloat &FloatValue);
+// TODO
+//  RegisterAccessResult set(const APInt &IntValue, SetMode mode = SetMode::EXACT);
+//  RegisterAccessResult set(const APFloat &FloatValue);
 
+private:
+  unsigned RegisterId;
+  unsigned ClassId;
 
+  std::size_t RegisterSize;
 }; // class Register
 
 } // end namespace llr

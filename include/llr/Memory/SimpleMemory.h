@@ -30,12 +30,11 @@ namespace llr {
 class MemoryAccessResult;
 class MemoryAddress;
 
-class SimpleMemory : public Memory {
+class SimpleMemoryManager : public Memory {
   using ArrayRef = llvm::ArrayRef<uint8_t>;
   using size_t = std::size_t;
 
 public:
-
   virtual MemoryAccessResult write(const MemoryAddress &Addr, const ArrayRef &data) override;
   virtual MemoryAccessResult read (const MemoryAddress &Addr, size_t size) override;
 

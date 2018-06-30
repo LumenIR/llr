@@ -14,15 +14,22 @@
 namespace llr {
 
 class RegisterBank;
+class Register;
 
 class RegisterFile {
+
+public:
 
   RegisterFile(RegisterFile&) = delete;
 
   ~RegisterFile() = default;
 
-public:
-  virtual RegisterBank& getRegisterBank(unsigned RegisterBankId) const = 0;
+  RegisterFile() = default;
+
+
+  virtual Register& getRegisterById(unsigned RegisterId) const = 0;
+
+//  virtual RegisterBank& getRegisterBank(unsigned RegisterBankId) const = 0;
 
 
 }; // class RegisterFile
