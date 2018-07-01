@@ -22,7 +22,7 @@ class Stack;
 class LLRContextBase : public LLRContext {
 
 public:
-  ContextBase(Memory *, RegisterFile *, Stack *);
+  LLRContextBase(Memory *, RegisterFile *, Stack *);
 
   virtual Memory& getMemory() const override;
 

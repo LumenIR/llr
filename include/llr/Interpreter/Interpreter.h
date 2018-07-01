@@ -12,22 +12,22 @@
 
 namespace llr {
 
-class Context;
-class Fetcher;
-class Decoder;
+class LLRContext;
+class LLRFetcher;
+class LLRDecoder;
 
 
 class Interpreter {
 public:
-  Interpreter(Context&, Fetcher&, Decoder&);
+  Interpreter(LLRContext&, LLRFetcher&, LLRDecoder&);
   virtual ~Interpreter() = default;
 
   void run();
 
 private:
-  Context &Ctx;
-  Fetcher &fetcher;
-  Decoder &decoder;
+  LLRContext &Ctx;
+  LLRFetcher &fetcher;
+  LLRDecoder &decoder;
 
 }; // class Interpeter
 

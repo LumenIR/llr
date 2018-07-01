@@ -1,4 +1,4 @@
-#include "ContextBase.h"
+#include "llr/Context/LLRContextBase.h"
 
 #include "llr/Memory/Memory.h"
 #include "llr/Registers/RegisterFile.h"
@@ -7,22 +7,22 @@
 using namespace llr;
 using namespace llvm;
 
-ContextBase::ContextBase(Memory *M, RegisterFile *RF, Stack *S) :
+LLRContextBase::LLRContextBase(Memory *M, RegisterFile *RF, Stack *S) :
   Mem_ptr(M),
   RegisterFile_ptr(RF),
   Stack_ptr(S)
 { }
 
 
-Memory & ContextBase::getMemory() const {
+Memory & LLRContextBase::getMemory() const {
   return *Mem_ptr;
 }
 
-RegisterFile & ContextBase::getRegisterFile() const {
+RegisterFile & LLRContextBase::getRegisterFile() const {
   return *RegisterFile_ptr;
 }
 
-Stack & ContextBase::getStack() const {
+Stack & LLRContextBase::getStack() const {
   return *Stack_ptr;
 }
 

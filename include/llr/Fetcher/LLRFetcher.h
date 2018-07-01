@@ -1,4 +1,4 @@
-//===- llr/Fetcher/Fethcer.h - Instruction fetcher interface ----*- C++ -*---===//
+//===- llr/Fetcher/LLRFethcer.h - Instruction fetcher interface --*- C++ -*---===//
 //
 //                     The LLVM Compiler Infrastructure
 //
@@ -7,24 +7,24 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef LLR_FETCHER_FETCHER_H
-#define LLR_FETCHER_FETCHER_H
+#ifndef LLR_FETCHER_LLRFETCHER_H
+#define LLR_FETCHER_LLRFETCHER_H
 
 namespace llr {
 
 class MemoryAccessResult;
-class Context;
+class LLRContext;
 
 
-class Fetcher {
+class LLRFetcher {
 public:
 
-  virtual ~Fetcher() = default;
+  virtual ~LLRFetcher() = default;
 
-  virtual MemoryAccessResult fetchNext(const Context&) const = 0;
+  virtual MemoryAccessResult fetchNext(const LLRContext&) const = 0;
 
 }; // class Fetcher
 
 } // end namespace llr
 
-#endif //LLR_FETCHER_FETCHER_H
+#endif //LLR_FETCHER_LLRFETCHER_H
