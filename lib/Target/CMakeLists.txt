@@ -7,6 +7,7 @@ add_llr_library(llrTarget
 
   LINK_COMPONENTS
     Support
+    MC
 
   LINK_LIBS
     llrContext

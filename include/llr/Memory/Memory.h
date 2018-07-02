@@ -24,13 +24,11 @@ class MemoryAccessResult;
 class MemoryAddress;
 
 class Memory {
-  using ArrayRef = llvm::ArrayRef<uint8_t>;
   using size_t = std::size_t;
-
 public:
   virtual ~Memory() = default;
 
-  virtual MemoryAccessResult write(const MemoryAddress &Addr, const ArrayRef &data) = 0;
+  virtual MemoryAccessResult write(const MemoryAddress &Addr, const llvm::ArrayRef<uint8_t> &data) = 0;
   virtual MemoryAccessResult read (const MemoryAddress &Addr, size_t size)   = 0;
 
   virtual const MemoryAddress begin_address() const = 0;

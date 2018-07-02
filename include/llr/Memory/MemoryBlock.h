@@ -28,14 +28,13 @@ namespace llr {
 class MemoryAccessResult;
 
 class MemoryBlock : public Memory {
-  using ArrayRef = llvm::ArrayRef<uint8_t>;
   using size_t = std::size_t;
 
 public:
   MemoryBlock() = delete;
   MemoryBlock(const MemoryAddress b, const MemoryAddress e);
 
-  virtual MemoryAccessResult write(const MemoryAddress &Addr, const ArrayRef &data) override;
+  virtual MemoryAccessResult write(const MemoryAddress &Addr, const llvm::ArrayRef<uint8_t> &data) override;
   virtual MemoryAccessResult read (const MemoryAddress &Addr, size_t size) override;
 
   virtual const MemoryAddress begin_address() const override;

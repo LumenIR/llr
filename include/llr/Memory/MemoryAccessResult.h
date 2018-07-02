@@ -10,6 +10,8 @@
 #ifndef LLR_MEMORY_MEMORYACCESSRESULT_H
 #define LLR_MEMORY_MEMORYACCESSRESULT_H
 
+#include "llr/Memory/MemoryAddress.h"
+
 #include "llvm/ADT/ArrayRef.h"
 
 #include <vector>
@@ -33,29 +35,37 @@ enum class MemoryAccessStatus {
 
 class MemoryAccessResult {
   using MAS = enum MemoryAccessStatus;
-  using ArrayRef = llvm::ArrayRef<uint8_t>;
 public:
-  MemoryAccessResult(MAS S) {
-    Status = S;
+
+  MemoryAccessResult(MAS S, MemoryAddress Addr) :
+    Address(Addr),
+    Status(S) {
+
   }
 
-  MemoryAccessResult(MAS S, ArrayRef d);
+
+  MemoryAccessResult(MAS S, llvm::ArrayRef<uint8_t> d, MemoryAddress Address);
 
 
   MemoryAccessStatus getStatus() {
     return Status;
   }
 
-  size_t getSize() {
+  size_t getSize() const {
     return data.size();
   }
 
-  ArrayRef getData() {
+  llvm::ArrayRef<uint8_t> getData() const {
     assert(Status == MAS::ReadOK && "Trying to access data of failed memory read");
     return data;
   }
 
+  const MemoryAddress & getAddress() const {
+    return Address;
+  }
+
 public:
+  MemoryAddress Address;
   MemoryAccessStatus Status;
   std::vector<uint8_t> data;
 

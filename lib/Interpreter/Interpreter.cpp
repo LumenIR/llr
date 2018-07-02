@@ -22,7 +22,7 @@ void Interpreter::run() {
   while(Ctx.isRunning()) {
     MemoryAccessResult data = fetcher.fetchNext(Ctx);
 
-    LLRInst inst = decoder.decode(data.getData());
+    LLRInst inst = decoder.decode(data.getData(), data.getAddress());
 
     inst.execute(Ctx);
   }

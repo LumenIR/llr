@@ -2,7 +2,7 @@
 #include "LumenIRRegisterFile.h"
 
 #include "llr/Memory/SimpleMemory.h"
-#include "llr/Context/Context.h"
+#include "llr/Context/LLRContext.h"
 
 using namespace llvm;
 using namespace llr;

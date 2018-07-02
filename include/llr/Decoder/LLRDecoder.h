@@ -10,21 +10,21 @@
 #ifndef LLR_DECODER_LLRDECODER_H
 #define LLR_DECODER_LLRDECODER_H
 
-#include "llvm/ADT/ArrayRef.h"
+#include "llr/Instruction/LLRInst.h"
 
+#include "llvm/ADT/ArrayRef.h"
 
 namespace llr {
 
 class LLRInst;
+class MemoryAddress;
 
 class LLRDecoder {
-  using ArrayRef = llvm::ArrayRef<uint8_t>;
-
 public:
 
-  virtual ~Decoder() = default;
+  virtual ~LLRDecoder() = default;
 
-  virtual LLRInst decode(ArrayRef) const = 0;
+  virtual LLRInst decode(llvm::ArrayRef<uint8_t> data, const MemoryAddress &Address) const = 0;
 
 }; // class LLRDecoder
 

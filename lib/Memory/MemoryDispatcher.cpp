@@ -16,7 +16,7 @@ MemoryAccessResult MemoryDispatcher::write(const MemoryAddress &Addr, const Arra
   Memory *Mem_ptr = Map.lookup(Addr, nullptr);
 
   if (Mem_ptr == nullptr) {
-    return MemoryAccessResult(MAS::NotFound);
+    return MemoryAccessResult(MAS::NotFound, Addr);
   } else {
     return Mem_ptr->write(Addr, data);
   }
@@ -27,18 +27,18 @@ MemoryAccessResult MemoryDispatcher::read(const MemoryAddress &Addr, size_t size
   Memory *Mem_ptr = Map.lookup(Addr, nullptr);
 
   if (Mem_ptr == nullptr) {
-    return MemoryAccessResult(MAS::NotFound);
+    return MemoryAccessResult(MAS::NotFound, Addr);
   } else {
     return Mem_ptr->read(Addr, size);
   }
 }
 
 const MemoryAddress MemoryDispatcher::begin_address() const {
-  return MemoryAddress(0);
+  return MemoryAddress(static_cast<uint64_t>(0));
 }
 
 const MemoryAddress MemoryDispatcher::end_address() const {
-  return MemoryAddress(0xffffffff);
+  return MemoryAddress(static_cast<uint64_t>(0xffffffff));
 }
 
 void MemoryDispatcher::registerMemory(Memory* M) {
