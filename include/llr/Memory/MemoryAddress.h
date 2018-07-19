@@ -25,6 +25,35 @@ public:
     return Address;
   }
 
+  inline std::size_t operator-(const MemoryAddress &rhs) {
+    return static_cast<std::size_t>(Address - rhs.Address);
+  }
+
+  inline bool operator< (const MemoryAddress &rhs) {
+    return Address < rhs.Address;
+  }
+
+  inline bool operator> (const MemoryAddress& rhs) {
+    return rhs < *this;
+  }
+
+  inline bool operator<=(const MemoryAddress& rhs) {
+    return !(*this > rhs);
+  }
+
+  inline bool operator>=(const MemoryAddress& rhs) {
+    return !(*this < rhs);
+  }
+
+
+  inline bool operator==(const MemoryAddress& rhs) {
+    return Address == rhs.Address;
+  }
+
+  inline bool operator!=(const MemoryAddress& rhs) {
+    return !(*this == rhs);
+  }
+
 private:
   uint64_t Address;
 

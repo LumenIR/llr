@@ -14,16 +14,16 @@ using MAS = enum MemoryAccessStatus;
 MemoryBlock::MemoryBlock(const MemoryAddress b, const MemoryAddress e) :
   begin_addr(b),
   end_addr(e) {
-  assert((uint64_t)b < (uint64_t)e && "Trying to create memory block with begin address >= end address");
+  assert(b < e && "Trying to create memory block with begin address >= end address");
 
-  data.resize((uint64_t)e - (uint64_t)b);
+  data.resize(e - b);
 }
 
 
 
 MemoryAccessResult MemoryBlock::write(const MemoryAddress &Addr, const ArrayRef<uint8_t> &d) {
-  assert(   (uint64_t)Addr            >= (uint64_t)begin_addr
-         && (uint64_t)Addr + d.size() <= (uint64_t)end_addr
+  assert(   Addr            >= begin_addr
+         && Addr + d.size() <= end_addr
          && "Writing to block memory out of bounds");
 
   uint64_t LocalAddress = (uint64_t)Addr - (uint64_t)begin_addr;
@@ -34,11 +34,11 @@ MemoryAccessResult MemoryBlock::write(const MemoryAddress &Addr, const ArrayRef<
 }
 
 MemoryAccessResult MemoryBlock::read(const MemoryAddress &Addr, size_t size) {
-  assert((   (uint64_t)Addr        >= (uint64_t)begin_addr)
-         && ((uint64_t)Addr + size <= (uint64_t)end_addr)
+  assert((   Addr        >= begin_addr)
+         && (Addr + size <= end_addr)
          && "Reading from block memory out of bounds");
 
-  uint64_t LocalAddress = (uint64_t)Addr - (uint64_t)begin_addr;
+  uint64_t LocalAddress = Addr - begin_addr;
 
   return {MAS::ReadOK, ArrayRef<uint8_t>(data.data() + LocalAddress, size), Addr};
 }
