@@ -90,5 +90,3 @@ macro(add_llr_target target_name)
   add_llr_library(llrTarget${target_name} ${ARGN})
 endmacro(add_llr_target)
 
-
-

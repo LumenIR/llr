@@ -14,6 +14,7 @@ using MAS = MemoryAccessStatus;
 using MAR = MemoryAccessResult;
 
 MAR SimpleMemoryManager::write(const MemoryAddress &Addr, const ArrayRef &data) {
+  assert(data.size() != 0 && "Cannot write 0 bytes to memory");
 
   MemoryAccessResult res = Dispatcher.write(Addr, data);
 
@@ -29,6 +30,8 @@ MAR SimpleMemoryManager::write(const MemoryAddress &Addr, const ArrayRef &data) 
 }
 
 MAR SimpleMemoryManager::read(const MemoryAddress &Addr, size_t size) {
+  assert(size != 0 && "Cannot read 0 bytes to memory");
+
   return Dispatcher.read(Addr, size);
 }
 
