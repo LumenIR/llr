@@ -9,6 +9,7 @@
 
 #include "llr/Memory/MemoryBlock.h"
 #include "llr/Memory/SimpleMemory.h"
+#include "llr/Memory/PageMemoryManager.h"
 #include "llr/Memory/MemoryAccessResult.h"
 
 #include "llvm/ADT/ArrayRef.h"
@@ -101,7 +102,7 @@ TEST(MemoryBlock, readAfterWrite) {
 }
 
 
-TEST(SimpleMemoryManager, readAfterWrite) {
+TEST(PageMemoryManager, readAfterWrite) {
 
   std::vector<struct MemoryAcc> accesses = {
     {{0x00000000}, {DATA, (size_t)1}},
@@ -113,7 +114,21 @@ TEST(SimpleMemoryManager, readAfterWrite) {
     {{0x00000000}, {DATA, (size_t)64}}
   };
 
-  Memory* memory = new SimpleMemoryManager();
+  constexpr uint64_t PAGE_SIZE_POWER_2 = 16;
+  constexpr uint64_t PAGE_SIZE = 1 << PAGE_SIZE_POWER_2;
+  constexpr uint64_t MAX_PAGES= 32;
+
+  std::vector<uint8_t> big_data(MAX_PAGES * PAGE_SIZE);
+  std::generate(big_data.begin(), big_data.end(), std::rand);
+
+
+  for (int i = 1; i < MAX_PAGES; i++) {
+    accesses.push_back(
+      {{PAGE_SIZE * (i + 16)}, {big_data.data(), (size_t)PAGE_SIZE*i}}
+    );
+  }
+
+  Memory* memory = new PageMemoryManager();
 
   for(const auto& Acc : accesses) {
     MemoryAccessResult writeRes = memory->write(Acc.addr, Acc.data);

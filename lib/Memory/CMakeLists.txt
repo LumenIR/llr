@@ -3,6 +3,7 @@ add_llr_library(llrMemory
   MemoryAccessResult.cpp
   MemoryBlock.cpp
   MemoryDispatcher.cpp
+  PageMemoryManager.cpp
   SimpleMemory.cpp
 
 

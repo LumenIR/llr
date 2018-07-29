@@ -44,6 +44,7 @@ public:
   }
 
 
+  //TODO make MemoryAccessResult builder to remove double copy
   MemoryAccessResult(MAS S, llvm::ArrayRef<uint8_t> d, MemoryAddress Address);
 
 
