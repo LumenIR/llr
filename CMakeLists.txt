@@ -127,6 +127,8 @@ if (NOT LLVM_INSTALL_TOOLCHAIN_ONLY)
     )
 endif()
 
+include_directories(third_party/elfio/include)
+
 add_subdirectory(lib)
 add_subdirectory(tools)
 add_subdirectory(unittests)

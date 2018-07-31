@@ -1,4 +1,5 @@
 add_lld_library(llrDriver
+  ELFLoader.cpp
   LlrDriver.cpp
 
   ADDITIONAL_HEADER_DIRS
@@ -8,5 +9,6 @@ add_lld_library(llrDriver
     Support
 
   LINK_LIBS
+    LLRContext
 )
 
