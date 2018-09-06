@@ -1,6 +1,7 @@
 add_llr_target(LumenIR
   LumenIRLLRDecoder.cpp
   LumenIRLLRFetcher.cpp
+  LumenIRInterpreter.cpp
   LumenIRTarget.cpp
   LumenIRRegisterFile.cpp
 
@@ -12,10 +13,12 @@ add_llr_target(LumenIR
     MC
 
   LINK_LIBS
+    llrContext
     llrDecoder
     llrFetcher
     llrTarget
     llrInstruction
+    llrInterpreter
     llrMemory
     llrRegisters
 )

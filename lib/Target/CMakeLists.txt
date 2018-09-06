@@ -1,6 +1,6 @@
 add_llr_library(llrTarget
   LLRTarget.cpp
-
+  LLRTargetRegistry.cpp
 
   ADDITIONAL_HEADER_DIRS
   $(LLR_INCLUDE_DIR)/llr/Memory

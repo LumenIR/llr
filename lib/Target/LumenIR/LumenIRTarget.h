@@ -16,21 +16,14 @@
 namespace llr
 {
 
-class Context;
-class Interpeter;
+class LLRContext;
+class Interpreter;
 
 class LumenIRLLRTarget : public LLRTarget {
 
 public:
-  LumenIRLLRTarget();
-
-
+  LumenIRLLRTarget(LLRContext *ctx, Interpreter *interp);
 }; // class LLRTarget
-
-
-//TODO make it static and create Target Register as in LLVM
-
-std::unique_ptr<LLRTarget> createLumenIRLLRTarget();
 
 
 } // end namespace llr
