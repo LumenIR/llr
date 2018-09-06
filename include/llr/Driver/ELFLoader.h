@@ -26,7 +26,7 @@ public:
 
   virtual ~ELFLoader() = default;
 
-  virtual loadFile(llvm::StringRef, LLRContext&) const = 0;
+  virtual void loadFile(llvm::StringRef, LLRContext&) const;
 
 }; // class ELFLoader
 

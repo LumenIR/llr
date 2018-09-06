@@ -9,6 +9,6 @@ add_lld_library(llrDriver
     Support
 
   LINK_LIBS
-    LLRContext
+    llrContext
 )
 

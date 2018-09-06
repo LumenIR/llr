@@ -19,15 +19,15 @@ class LLRDecoder;
 
 class Interpreter {
 public:
-  Interpreter(LLRContext&, LLRFetcher&, LLRDecoder&);
+  Interpreter(LLRContext*, LLRFetcher*, LLRDecoder*);
   virtual ~Interpreter() = default;
 
   void run();
 
 private:
-  LLRContext &Ctx;
-  LLRFetcher &fetcher;
-  LLRDecoder &decoder;
+  LLRContext *Ctx;
+  LLRFetcher *fetcher;
+  LLRDecoder *decoder;
 
 }; // class Interpeter
 

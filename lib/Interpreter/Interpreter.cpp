@@ -8,7 +8,7 @@
 using namespace llr;
 //using namespace llvm;
 
-Interpreter::Interpreter(LLRContext &context, LLRFetcher &f, LLRDecoder &d) :
+Interpreter::Interpreter(LLRContext *context, LLRFetcher *f, LLRDecoder *d) :
   Ctx(context),
   fetcher(f),
   decoder(d) {
@@ -19,11 +19,11 @@ Interpreter::Interpreter(LLRContext &context, LLRFetcher &f, LLRDecoder &d) :
 void Interpreter::run() {
 
 
-  while(Ctx.isRunning()) {
-    MemoryAccessResult data = fetcher.fetchNext(Ctx);
+  while(Ctx->isRunning()) {
+    MemoryAccessResult data = fetcher->fetchNext(*Ctx);
 
-    LLRInst inst = decoder.decode(data.getData(), data.getAddress());
+    LLRInst inst = decoder->decode(data.getData(), data.getAddress());
 
-    inst.execute(Ctx);
+    inst.execute(*Ctx);
   }
 }

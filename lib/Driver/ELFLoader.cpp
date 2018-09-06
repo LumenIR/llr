@@ -19,7 +19,6 @@ void ELFLoader::loadFile(StringRef file, LLRContext &Ctx) const {
 
   Memory &Mem = Ctx.getMemory();
 
-
   reader.load(file);
 
   for(ELFIO::segment *segment : reader.segments) {
