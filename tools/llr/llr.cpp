@@ -12,6 +12,11 @@
 //===----------------------------------------------------------------------===//
 
 #include "llr/Driver/LlrDriver.h"
+#include "llr/Driver/ELFLoader.h"
+#include "llr/Target/LLRTarget.h"
+#include "llr/Interpreter/Interpreter.h"
+#include "llr/Target/LLRTargetRegistry.h"
+
 #include "llvm/ADT/StringRef.h"
 #include "llvm/ADT/Triple.h"
 #include "llvm/Object/ELFObjectFile.h"
@@ -22,11 +27,14 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/Errc.h"
+#include "llvm/Support/TargetSelect.h"
 #include "llvm/Support/TargetRegistry.h"
 #include "llvm/Support/Signals.h"
 #include "llvm/Support/raw_ostream.h"
 
-//using namespace llr;
+#include <cstdint>
+
+using namespace llr;
 using namespace llvm;
 using namespace llvm::sys;
 using namespace llvm::object;
@@ -67,31 +75,6 @@ static const Target *getTarget(const ObjectFile *Obj = nullptr) {
   return TheTarget;
 }
 
-template <class ELFT> void loadFile(const ELFFile<ELFT> *o) {
-
-
-}
-
-
-static void LoadELF(ObjectFile *Obj) {
-  const Target *TheTarget = getTarget(Obj);
-
-  // Little-endian 32-bit
-  if (const ELF32LEObjectFile *ELFObj = dyn_cast<ELF32LEObjectFile>(Obj))
-    loadFile(ELFObj->getELFFile());
-
-  // Big-endian 32-bit
-  if (const ELF32BEObjectFile *ELFObj = dyn_cast<ELF32BEObjectFile>(Obj))
-    loadFile(ELFObj->getELFFile());
-
-  // Little-endian 64-bit
-  if (const ELF64LEObjectFile *ELFObj = dyn_cast<ELF64LEObjectFile>(Obj))
-    loadFile(ELFObj->getELFFile());
-
-  // Big-endian 64-bit
-  if (const ELF64BEObjectFile *ELFObj = dyn_cast<ELF64BEObjectFile>(Obj))
-    loadFile(ELFObj->getELFFile());
-}
 
 
 int main(int Argc, const char **Argv) {
@@ -103,16 +86,14 @@ int main(int Argc, const char **Argv) {
 
   StringRef file = "a.out";
 
-  Expected<OwningBinary<Binary>> BinaryOrErr = createBinary(file);
-  if (!BinaryOrErr) {
-    errs() << file << " object_error::invalid_file_type";
-    exit(1);
-  }
-  Binary &Binary = *BinaryOrErr.get().getBinary();
+  ELFLoader loader;
 
-  if (ObjectFile *o = dyn_cast<ObjectFile>(&Binary)) {
+  InitializeAllTargets();
+  registry::InitializeAllLLRTargets();
 
-  } else {
-    
-  }
+  LLRTarget *llrTarget = registry::getLLRTarget(Triple("lumenir"));
+
+  loader.loadFile(file, llrTarget->getContext());
+
+  llrTarget->getInterpeter().run();
 }
