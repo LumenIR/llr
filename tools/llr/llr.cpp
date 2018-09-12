@@ -76,11 +76,18 @@ static const Target *getTarget(const ObjectFile *Obj = nullptr) {
 }
 
 
+namespace llr {
+void report_fatal_error(void *UserData, const std::string & Problem, bool GenCrashDiag);
+}
 
 int main(int Argc, const char **Argv) {
   // Standard set up, so program fails gracefully.
   sys::PrintStackTraceOnErrorSignal(Argv[0]);
   PrettyStackTraceProgram StackPrinter(Argc, Argv);
+
+  install_fatal_error_handler(llr::report_fatal_error, nullptr);
+
+  cl::ParseCommandLineOptions(Argc, Argv);
 
   //  llvm_shutdown_obj Shutdown;
 
@@ -96,4 +103,8 @@ int main(int Argc, const char **Argv) {
   loader.loadFile(file, llrTarget->getContext());
 
   llrTarget->getInterpeter().run();
+}
+
+void llr::report_fatal_error(void *UserData, const std::string & Problem, bool GenCrashDiag) {
+  errs() << "llr fatal error: " << Problem << "\n";
 }
