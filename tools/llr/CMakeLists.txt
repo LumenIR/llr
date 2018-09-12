@@ -9,7 +9,7 @@ add_llr_tool(llr
   llr.cpp
 )
 
-target_link_libraries(llr
+target_link_libraries(llr PRIVATE
   llrConfig
   llrContext
   llrDriver

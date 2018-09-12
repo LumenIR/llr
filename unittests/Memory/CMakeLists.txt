@@ -4,5 +4,6 @@ add_llr_unittest(llrMemoryTests
 )
 
 target_link_libraries(llrMemoryTests
+PRIVATE
   llrMemory
 )

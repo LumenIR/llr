@@ -1,4 +1,4 @@
-add_lld_library(llrDriver
+add_llr_library(llrDriver
   ELFLoader.cpp
   LlrDriver.cpp
 
