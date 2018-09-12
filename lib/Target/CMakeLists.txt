@@ -15,4 +15,4 @@ add_llr_library(llrTarget
 )
 
 
-add_subdirectory(LumenIR)
+add_subdirectory(RISCV)

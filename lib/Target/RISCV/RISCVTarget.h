@@ -1,4 +1,4 @@
-//===- lib/Target/LumenIR/LumenIRTarget.h - LLR LumenIR Target -*- C++ -*---===//
+//===- lib/Target/RISCV/RISCVTarget.h - LLR RISCV Target -*- C++ -*---===//
 //
 //                     The LLVM Compiler Infrastructure
 //
@@ -7,8 +7,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef LLR_TARGET_LUMENIR_LUMENIRTARGET_H
-#define LLR_TARGET_LUMENIR_LUMENIRTARGET_H
+#ifndef LLR_TARGET_RISCV_RISCVTARGET_H
+#define LLR_TARGET_RISCV_RISCVTARGET_H
 
 #include "llr/Target/LLRTarget.h"
 
@@ -19,13 +19,13 @@ namespace llr
 class LLRContext;
 class Interpreter;
 
-class LumenIRLLRTarget : public LLRTarget {
+class RISCVLLRTarget : public LLRTarget {
 
 public:
-  LumenIRLLRTarget(LLRContext *ctx, Interpreter *interp);
+  RISCVLLRTarget(LLRContext *ctx, Interpreter *interp);
 }; // class LLRTarget
 
 
 } // end namespace llr
 
-#endif //LLR_TARGET_LUMENIR_LUMENIRTARGET_H
+#endif //LLR_TARGET_RISCV_RISCVTARGET_H

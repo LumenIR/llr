@@ -1,4 +1,4 @@
-//===- lib/Target/LumenIR/RegisterFile.h ---------------------*- C++ -*-----===//
+//===- lib/Target/RISCV/RegisterFile.h ---------------------*- C++ -*-----===//
 //
 //                     The LLVM Compiler Infrastructure
 //
@@ -7,13 +7,13 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef LLR_TARGET_LUMENIR_LUMENIRREGISTERFILE_H
-#define LLR_TARGET_LUMENIR_LUMENIRREGISTERFILE_H
+#ifndef LLR_TARGET_RISCV_RISCVREGISTERFILE_H
+#define LLR_TARGET_RISCV_RISCVREGISTERFILE_H
 
 #include "llr/Registers/RegisterFile.h"
 
 #define GET_REGINFO_ENUM
-#include "LumenIRGenRegisterInfo.inc"
+#include "RISCVGenRegisterInfo.inc"
 #undef GET_REGINFO_ENUM
 
 
@@ -22,11 +22,11 @@ namespace llr {
 class RegisterBank;
 class LLRRegister;
 
-class LumenIRRegisterFile : public RegisterFile {
+class RISCVRegisterFile : public RegisterFile {
 public:
-  LumenIRRegisterFile();
+  RISCVRegisterFile();
 
-  virtual ~LumenIRRegisterFile() = default;
+  virtual ~RISCVRegisterFile() = default;
 
   virtual LLRRegister& getRegisterById(unsigned RegisterId) const override;
 
@@ -44,5 +44,5 @@ protected:
 
 } // end namespace llr
 
-#endif //LLR_TARGET_LUMENIR_LUMENIRREGISTERFILE_H
+#endif //LLR_TARGET_RISCV_RISCVREGISTERFILE_H
 

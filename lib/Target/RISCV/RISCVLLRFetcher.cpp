@@ -1,6 +1,6 @@
-#include "LumenIRLLRFetcher.h"
+#include "RISCVLLRFetcher.h"
 
-#include "LumenIRRegisterFile.h"
+#include "RISCVRegisterFile.h"
 
 #include "llr/Context/LLRContext.h"
 #include "llr/Registers/RegisterAccessResult.h"
@@ -12,9 +12,9 @@
 using namespace llvm;
 using namespace llr;
 
-MemoryAccessResult LumenIRLLRFetcher::fetchNext(const LLRContext& Ctx) const {
+MemoryAccessResult RISCVLLRFetcher::fetchNext(const LLRContext& Ctx) const {
    RegisterFile &Regs = Ctx.getRegisterFile();
-   LLRRegister &PC = Regs.getRegisterById(LumenIR::PC);
+   LLRRegister &PC = Regs.getRegisterById(RISCV::PC);
 
 
    ArrayRef<uint8_t> pcData = PC.get().getData();

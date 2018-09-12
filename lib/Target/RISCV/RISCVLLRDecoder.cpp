@@ -1,4 +1,4 @@
-#include "LumenIRLLRDecoder.h"
+#include "RISCVLLRDecoder.h"
 
 #include "llr/Instruction/LLRInst.h"
 #include "llr/Memory/MemoryAddress.h"
@@ -15,18 +15,18 @@
 
 
 #define GET_INSTRINFO_ENUM
-#include "LumenIRGenInstrInfo.inc"
+#include "RISCVGenInstrInfo.inc"
 #undef GET_INSTRINFO_ENUM
 
-#define DEBUG_TYPE "lumenir-llr-decoder"
+#define DEBUG_TYPE "llr-riscv-decoder"
 
 using namespace llvm;
 using namespace llr;
 
-LumenIRLLRDecoder::LumenIRLLRDecoder() {
+RISCVLLRDecoder::RISCVLLRDecoder() {
 
   //TODO
-  std::string Triple("lumenir");
+  std::string Triple("riscv");
   std::string error_msg;
 
   const Target *TheTarget = TargetRegistry::lookupTarget(Triple, error_msg);
@@ -48,7 +48,7 @@ static void print_instruction(LLRContext& Ctx, LLRInst& Inst) {
 
 
 
-LLRInst LumenIRLLRDecoder::decode(ArrayRef<uint8_t> data, const MemoryAddress &Address) const {
+LLRInst RISCVLLRDecoder::decode(ArrayRef<uint8_t> data, const MemoryAddress &Address) const {
 
   MCInst MCInstr;
 

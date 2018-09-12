@@ -17,7 +17,7 @@ target_link_libraries(llr PRIVATE
   llrMemory
   llrRegisters
   llrTarget
-  llrTargetLumenIR
+  llrTargetRISCV
 )
 
 install(TARGETS llr

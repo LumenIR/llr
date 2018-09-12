@@ -1,9 +1,9 @@
-add_llr_target(LumenIR
-  LumenIRLLRDecoder.cpp
-  LumenIRLLRFetcher.cpp
-  LumenIRInterpreter.cpp
-  LumenIRTarget.cpp
-  LumenIRRegisterFile.cpp
+add_llr_target(RISCV
+  RISCVLLRDecoder.cpp
+  RISCVLLRFetcher.cpp
+  RISCVInterpreter.cpp
+  RISCVTarget.cpp
+  RISCVRegisterFile.cpp
 
   ADDITIONAL_HEADER_DIRS
   $(LLR_INCLUDE_DIR)/llr/Memory

@@ -24,10 +24,10 @@ namespace registry {
 
 #define LLR_TARGET(TargetName) LLRInitialize##TargetName##Target();
 
-extern "C" void LLR_TARGET(LumenIR);
+extern "C" void LLR_TARGET(RISCV);
 
 inline void InitializeAllLLRTargets() {
-  LLR_TARGET(LumenIR)
+  LLR_TARGET(RISCV)
 
   //TODO init LLR from generated list
   //#include "llvm/Config/Targets.def"

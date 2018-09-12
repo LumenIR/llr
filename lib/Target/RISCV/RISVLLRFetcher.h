@@ -7,8 +7,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef LLR_TARGET_LUMENIR_LUMENIRLLRFETCHER_H
-#define LLR_TARGET_LUMENIR_LUMENIRLLRFETCHER_H
+#ifndef LLR_TARGET_RISCV_RISCVLLRFETCHER_H
+#define LLR_TARGET_RISCV_RISCVLLRFETCHER_H
 
 #include "llr/Fetcher/LLRFetcher.h"
 
@@ -18,12 +18,12 @@ class MemoryAccessResult;
 class LLRContext;
 
 
-class LumenIRLLRFetcher : public LLRFetcher {
+class RISCVLLRFetcher : public LLRFetcher {
 public:
   virtual MemoryAccessResult fetchNext(const LLRContext&) const override;
 
-}; // class LumenIRLLRFetcher
+}; // class RISCVLLRFetcher
 
 } // end namespace llr
 
-#endif //LLR_TARGET_LUMENIR_LUMENIRLLRFETCHER_H
+#endif //LLR_TARGET_RISCV_RISCVLLRFETCHER_H

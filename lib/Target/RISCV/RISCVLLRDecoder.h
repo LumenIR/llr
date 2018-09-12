@@ -1,4 +1,4 @@
-//===- lib/Target/LumenIR/RegisterFile.h ---------------------*- C++ -*-----===//
+//===- lib/Target/RISCV/RegisterFile.h ---------------------*- C++ -*-----===//
 //
 //                     The LLVM Compiler Infrastructure
 //
@@ -7,8 +7,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef LLR_TARGET_LUMENIR_LUMENIRLLRDECODER_H
-#define LLR_TARGET_LUMENIR_LUMENIRLLRDECODER_H
+#ifndef LLR_TARGET_RISCV_RISCVLLRDECODER_H
+#define LLR_TARGET_RISCV_RISCVLLRDECODER_H
 
 #include "llr/Decoder/LLRDecoder.h"
 
@@ -21,9 +21,9 @@ namespace llr {
 class LLRInst;
 class MemoryAddress;
 
-class LumenIRLLRDecoder : public LLRDecoder {
+class RISCVLLRDecoder : public LLRDecoder {
 public:
-  LumenIRLLRDecoder();
+  RISCVLLRDecoder();
 
 
   virtual LLRInst decode(llvm::ArrayRef<uint8_t> data, const MemoryAddress &Address) const override;
@@ -32,9 +32,9 @@ private:
   llvm::MCDisassembler *disasm;
 
 
-}; // class LumenIRLLRDecoder
+}; // class RISCVLLRDecoder
 
 } // end namespace llr
 
-#endif //LLR_TARGET_LUMENIR_LUMENIRLLRDECODER_H
+#endif //LLR_TARGET_RISCV_RISCVLLRDECODER_H
 

@@ -44,8 +44,8 @@ using namespace llvm::object;
 static const Target *getTarget(const ObjectFile *Obj = nullptr) {
   // Figure out the target triple.
   llvm::Triple TheTriple("unknown-unknown-unknown");
-  std::string TripleName("lumenir-unknown-unknown");
-  std::string ArchName = "lumenir";
+  std::string TripleName("riscv-unknown-unknown");
+  std::string ArchName = "riscv";
 
   if (TripleName.empty()) {
    if (Obj) {
@@ -98,7 +98,7 @@ int main(int Argc, const char **Argv) {
   InitializeAllTargets();
   registry::InitializeAllLLRTargets();
 
-  LLRTarget *llrTarget = registry::getLLRTarget(Triple("lumenir"));
+  LLRTarget *llrTarget = registry::getLLRTarget(Triple("riscv"));
 
   loader.loadFile(file, llrTarget->getContext());
 
