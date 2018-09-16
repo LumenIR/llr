@@ -1,9 +1,9 @@
 add_llr_target(RISCV
   RISCVLLRDecoder.cpp
   RISCVLLRFetcher.cpp
-  RISCVInterpreter.cpp
-  RISCVTarget.cpp
-  RISCVRegisterFile.cpp
+  RISCVLLRInterpreter.cpp
+  RISCVLLRTarget.cpp
+  RISCVLLRRegisterFile.cpp
 
   ADDITIONAL_HEADER_DIRS
   $(LLR_INCLUDE_DIR)/llr/Memory

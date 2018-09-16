@@ -17,12 +17,12 @@ namespace llr
 {
 
 class LLRContext;
-class Interpreter;
+class LLRInterpreter;
 
 class RISCVLLRTarget : public LLRTarget {
 
 public:
-  RISCVLLRTarget(LLRContext *ctx, Interpreter *interp);
+  RISCVLLRTarget(LLRContext *ctx, LLRInterpreter *interp);
 }; // class LLRTarget
 
 

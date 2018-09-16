@@ -6,6 +6,7 @@
 #include "llr/Memory/MemoryAccessResult.h"
 
 #include "llvm/ADT/StringRef.h"
+#include "llvm/ADT/Twine.h"
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/ErrorHandling.h"
 #include "llvm/Support/raw_ostream.h"
@@ -26,7 +27,7 @@ void ELFLoader::loadFile(StringRef file, LLRContext &Ctx) const {
   Memory &Mem = Ctx.getMemory();
 
   if (!reader.load(file)) {
-    report_fatal_error("Failed to load elf file: " + file);
+    report_fatal_error(llvm::Twine("Failed to load elf file: ") + file);
     return;
   }
 
@@ -36,7 +37,7 @@ void ELFLoader::loadFile(StringRef file, LLRContext &Ctx) const {
     MemoryAddress Addr = segment->get_virtual_address();
     size_t Size = segment->get_file_size();
 
-    DEBUG(
+    LLVM_DEBUG(
         dbgs() << "Found segment virtual address: 0x";
         dbgs().write_hex(Addr);
         dbgs() << ", size: " << Size;

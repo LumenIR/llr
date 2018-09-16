@@ -1,4 +1,4 @@
-#include "RISCVRegisterFile.h"
+#include "RISCVLLRRegisterFile.h"
 
 #include "llr/Registers/SimpleRegister.h"
 
@@ -6,11 +6,11 @@ using namespace llvm;
 using namespace llr;
 
 
-RISCVRegisterFile::RISCVRegisterFile() {
+RISCVLLRRegisterFile::RISCVLLRRegisterFile() {
 //TODO
 }
 
-LLRRegister&  RISCVRegisterFile::getRegisterById(unsigned regId) const {
+LLRRegister&  RISCVLLRRegisterFile::getRegisterById(unsigned regId) const {
   switch (regId) {
 //  case llvm::RISCV::PC:    return *PC;
 //  case llvm::RISCV::SP:    return *SP;

@@ -1,5 +1,5 @@
 add_llr_library(llrInterpreter
-  Interpreter.cpp
+  LLRInterpreter.cpp
 
   ADDITIONAL_HEADER_DIRS
   $(LLR_INCLUDE_DIR)/llr/Fetcher

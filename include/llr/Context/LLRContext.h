@@ -15,7 +15,7 @@ namespace llr
 
 class Stack;
 class Memory;
-class RegisterFile;
+class LLRRegisterFile;
 
 class LLRContext {
 
@@ -25,7 +25,7 @@ public:
 
   virtual Memory& getMemory() const = 0;
 
-  virtual RegisterFile& getRegisterFile() const = 0;
+  virtual LLRRegisterFile& getRegisterFile() const = 0;
 
   virtual Stack& getStack() const = 0;
 

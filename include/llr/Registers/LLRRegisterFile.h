@@ -1,4 +1,4 @@
-//===- llr/Registers/Register.h - Memory access interface ---*- C++ -*-----===//
+//===- llr/Registers/LLRRegisterFile.h - RegisterFile interface-*- C++ -*-----===//
 //
 //                     The LLVM Compiler Infrastructure
 //
@@ -13,28 +13,25 @@
 
 namespace llr {
 
-class RegisterBank;
 class LLRRegister;
 
-class RegisterFile {
+class LLRRegisterFile {
 
 public:
 
-  RegisterFile(RegisterFile&) = delete;
+  LLRRegisterFile(LLRRegisterFile&) = delete;
 
-  ~RegisterFile() = default;
+  ~LLRRegisterFile() = default;
 
-  RegisterFile() = default;
+  LLRRegisterFile() = default;
 
 
   virtual LLRRegister& getRegisterById(unsigned RegisterId) const = 0;
 
-//  virtual RegisterBank& getRegisterBank(unsigned RegisterBankId) const = 0;
 
-
-}; // class RegisterFile
+}; // class LLRRegisterFile
 
 } // end namespace llr
 
-#endif //LLR_REGISTERS_REGISTERFILE_H
+#endif //LLR_REGISTERS_LLRREGISTERFILE_H
 

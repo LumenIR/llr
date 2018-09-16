@@ -1,10 +1,10 @@
 #include "RISCVLLRFetcher.h"
 
-#include "RISCVRegisterFile.h"
+#include "RISCVLLRRegisterFile.h"
 
 #include "llr/Context/LLRContext.h"
 #include "llr/Registers/RegisterAccessResult.h"
-#include "llr/Registers/RegisterFile.h"
+#include "llr/Registers/LLRRegisterFile.h"
 #include "llr/Registers/LLRRegister.h"
 #include "llr/Memory/MemoryAccessResult.h"
 #include "llr/Memory/Memory.h"
@@ -13,8 +13,8 @@ using namespace llvm;
 using namespace llr;
 
 MemoryAccessResult RISCVLLRFetcher::fetchNext(const LLRContext& Ctx) const {
-   RegisterFile &Regs = Ctx.getRegisterFile();
-   LLRRegister &PC = Regs.getRegisterById(RISCV::PC);
+   LLRRegisterFile &Regs = Ctx.getRegisterFile();
+   LLRRegister &PC = Regs.getRegisterById(0);
 
 
    ArrayRef<uint8_t> pcData = PC.get().getData();

@@ -16,23 +16,23 @@ namespace llr
 {
 
 class Memory;
-class RegisterFile;
+class LLRRegisterFile;
 class Stack;
 
 class LLRContextBase : public LLRContext {
 
 public:
-  LLRContextBase(Memory *, RegisterFile *, Stack *);
+  LLRContextBase(Memory *, LLRRegisterFile *, Stack *);
 
   virtual Memory& getMemory() const override;
 
-  virtual RegisterFile& getRegisterFile() const override;
+  virtual LLRRegisterFile& getRegisterFile() const override;
 
   virtual Stack& getStack() const override;
 
 private:
   Memory *Mem_ptr;
-  RegisterFile *RegisterFile_ptr;
+  LLRRegisterFile *RegisterFile_ptr;
   Stack *Stack_ptr;
 
 }; // class LLRContextBase

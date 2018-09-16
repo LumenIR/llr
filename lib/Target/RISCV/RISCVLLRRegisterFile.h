@@ -7,10 +7,10 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef LLR_TARGET_RISCV_RISCVREGISTERFILE_H
-#define LLR_TARGET_RISCV_RISCVREGISTERFILE_H
+#ifndef LLR_TARGET_RISCV_RISCVLLRREGISTERFILE_H
+#define LLR_TARGET_RISCV_RISCVLLRREGISTERFILE_H
 
-#include "llr/Registers/RegisterFile.h"
+#include "llr/Registers/LLRRegisterFile.h"
 
 #define GET_REGINFO_ENUM
 #include "RISCVGenRegisterInfo.inc"
@@ -19,30 +19,26 @@
 
 namespace llr {
 
-class RegisterBank;
 class LLRRegister;
 
-class RISCVRegisterFile : public RegisterFile {
+class RISCVLLRRegisterFile : public LLRRegisterFile {
 public:
-  RISCVRegisterFile();
+  RISCVLLRRegisterFile();
 
-  virtual ~RISCVRegisterFile() = default;
+  virtual ~RISCVLLRRegisterFile() = default;
 
   virtual LLRRegister& getRegisterById(unsigned RegisterId) const override;
 
 protected:
-//  RegisterBank &GPRRegisters;
-//  RegisterBank &SpecialRegisters;
-
   LLRRegister *PC;
   LLRRegister *SP;
   LLRRegister *FP;
 
 
 
-}; // class RegisterFile
+}; // class RISCVLLRRegisterFile
 
 } // end namespace llr
 
-#endif //LLR_TARGET_RISCV_RISCVREGISTERFILE_H
+#endif //LLR_TARGET_RISCV_RISCVLLRREGISTERFILE_H
 

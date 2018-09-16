@@ -1,4 +1,4 @@
-#include "llr/Interpreter/Interpreter.h"
+#include "llr/Interpreter/LLRInterpreter.h"
 #include "llr/Instruction/LLRInst.h"
 #include "llr/Context/LLRContext.h"
 #include "llr/Decoder/LLRDecoder.h"
@@ -8,7 +8,7 @@
 using namespace llr;
 //using namespace llvm;
 
-Interpreter::Interpreter(LLRContext *context, LLRFetcher *f, LLRDecoder *d) :
+LLRInterpreter::LLRInterpreter(LLRContext *context, LLRFetcher *f, LLRDecoder *d) :
   Ctx(context),
   fetcher(f),
   decoder(d) {
@@ -16,7 +16,7 @@ Interpreter::Interpreter(LLRContext *context, LLRFetcher *f, LLRDecoder *d) :
 }
 
 
-void Interpreter::run() {
+void LLRInterpreter::run() {
 
 
   while(Ctx->isRunning()) {

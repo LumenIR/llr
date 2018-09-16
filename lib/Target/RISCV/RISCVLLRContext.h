@@ -1,5 +1,5 @@
-#ifndef LLR_TARGET_RISCV_RISCVCONTEXT_H
-#define LLR_TARGET_RISCV_RISCVCONTEXT_H
+#ifndef LLR_TARGET_RISCV_RISCVLLRCONTEXT_H
+#define LLR_TARGET_RISCV_RISCVLLRCONTEXT_H
 
 #include "llr/Context/LLRContextBase.h"
 
@@ -8,12 +8,12 @@ namespace llr
 
 class Stack;
 class Memory;
-class RegisterFile;
+class LLRRegisterFile;
 
 class RISCVLLRContext : public LLRContextBase {
 
 public:
-  RISCVLLRContext(Memory *m, RegisterFile *r, Stack *s) :
+  RISCVLLRContext(Memory *m, LLRRegisterFile *r, Stack *s) :
     LLRContextBase(m, r, s)
   { }
 
@@ -27,5 +27,5 @@ public:
 
 } // end namespace llr
 
-#endif //LLR_TARGET_RISCV_RISCVCONTEXT_H
+#endif //LLR_TARGET_RISCV_RISCVLLRCONTEXT_H
 

@@ -18,14 +18,14 @@ namespace llr
 {
 
 class LLRContext;
-class Interpreter;
+class LLRInterpreter;
 
 class LLRTarget {
 protected:
   LLRTarget(
       llvm::Triple Triple,
       LLRContext *ctx,
-      Interpreter *interp
+      LLRInterpreter *interp
       ) :
     TargetTriple(Triple),
     Ctx_ptr(ctx),
@@ -42,7 +42,7 @@ public:
   }
 
 
-  Interpreter &getInterpeter() const {
+  LLRInterpreter &getInterpeter() const {
     return *Interpreter_ptr;
   }
 
@@ -56,7 +56,7 @@ private:
 
 
   LLRContext* Ctx_ptr;
-  Interpreter* Interpreter_ptr;
+  LLRInterpreter* Interpreter_ptr;
 
 
 }; // class LLRTarget

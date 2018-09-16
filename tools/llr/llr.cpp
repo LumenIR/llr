@@ -14,7 +14,7 @@
 #include "llr/Driver/LlrDriver.h"
 #include "llr/Driver/ELFLoader.h"
 #include "llr/Target/LLRTarget.h"
-#include "llr/Interpreter/Interpreter.h"
+#include "llr/Interpreter/LLRInterpreter.h"
 #include "llr/Target/LLRTargetRegistry.h"
 
 #include "llvm/ADT/StringRef.h"
