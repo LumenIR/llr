@@ -14,6 +14,7 @@
 
 #include "llvm/ADT/ArrayRef.h"
 
+#include <cstring>
 #include <vector>
 
 namespace llvm {
@@ -39,6 +40,7 @@ public:
   SimpleRegister(unsigned RegId, unsigned ClId, std::size_t size) :
     LLRRegister(RegId, ClId, size) {
     data_storage.resize(size);
+    memset(data_storage.data(), 0, size);
   }
 
   virtual RegisterAccessResult get() override;
@@ -48,8 +50,6 @@ public:
 
 private:
   std::vector<uint8_t> data_storage;
-
-
 }; // class SimpleRegister
 
 } // end namespace llr
