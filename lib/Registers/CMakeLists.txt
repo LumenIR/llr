@@ -1,5 +1,6 @@
 add_llr_library(llrRegisters
   LLRRegister.cpp
+  ProxyRegister.cpp
   SimpleRegister.cpp
 
   ADDITIONAL_HEADER_DIRS
