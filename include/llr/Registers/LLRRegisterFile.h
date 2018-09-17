@@ -28,6 +28,8 @@ public:
 
   virtual LLRRegister& getRegisterById(unsigned RegisterId) const = 0;
 
+  virtual LLRRegister& getPC() const = 0;
+
 
 }; // class LLRRegisterFile
 
