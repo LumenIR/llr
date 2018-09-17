@@ -3,6 +3,9 @@
 #include "llr/Memory/MemoryAccessResult.h"
 #include "llr/Memory/MemoryAddress.h"
 
+#include "llvm/Support/Debug.h"
+#include "llvm/Support/raw_os_ostream.h"
+
 #include <algorithm>
 #include <cassert>
 #include <cstdint>
@@ -68,6 +71,7 @@ MemoryAccessResult PageMemoryManager::write(const MemoryAddress &Addr, const Arr
       page = new MemoryPage();
       page->isValid = true;
       page->data.resize(PageSize);
+      std::fill(page->data.begin(), page->data.end(), 0xDEADBEAF);
 
       MemoryPage_uptr newPage = MemoryPage_uptr(page);
       pages.emplace(curr_page_idx, std::move(newPage));
@@ -75,7 +79,7 @@ MemoryAccessResult PageMemoryManager::write(const MemoryAddress &Addr, const Arr
     std::copy(
           d.begin() + d.size() - data_remains,
           d.begin() + d.size() - data_remains + curr_write_size,
-          page->data.begin()
+          page->data.begin() + curr_page_begin_offset
     );
 
 
