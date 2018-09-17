@@ -10,6 +10,7 @@
 #ifndef LLR_REGISTERS_LLRREGISTER_H
 #define LLR_REGISTERS_LLRREGISTER_H
 
+#include "llr/Registers/RegisterAccessResult.h"
 #include "llvm/ADT/ArrayRef.h"
 
 #include <cstdint>
@@ -21,7 +22,6 @@ namespace llvm {
 
 namespace llr {
 
-class RegisterAccessResult;
 
 
 
@@ -58,11 +58,22 @@ public:
 
   virtual RegisterAccessResult set(const llvm::ArrayRef<uint8_t> data, SetMode mode = SetMode::EXACT) = 0;
 
+
+  virtual RegisterAccessResult set(uint32_t data, SetMode mode = SetMode::EXACT) final {
+    set(llvm::ArrayRef<uint8_t>(reinterpret_cast<uint8_t*>(&data), 4), mode);
+  }
+
+  virtual RegisterAccessResult set(uint64_t data, SetMode mode = SetMode::EXACT) final {
+    set(llvm::ArrayRef<uint8_t>(reinterpret_cast<uint8_t*>(&data), 8), mode);
+  }
+
+
+
 // TODO
 //  RegisterAccessResult set(const APInt &IntValue, SetMode mode = SetMode::EXACT);
 //  RegisterAccessResult set(const APFloat &FloatValue);
 
-private:
+protected:
   unsigned RegisterId;
   unsigned ClassId;
 
