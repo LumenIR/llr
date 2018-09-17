@@ -4,6 +4,8 @@
 #include "llr/Memory/Memory.h"
 #include "llr/Memory/MemoryAddress.h"
 #include "llr/Memory/MemoryAccessResult.h"
+#include "llr/Registers/LLRRegisterFile.h"
+#include "llr/Registers/LLRRegister.h"
 
 #include "llvm/ADT/StringRef.h"
 #include "llvm/ADT/Twine.h"
@@ -25,11 +27,19 @@ void ELFLoader::loadFile(StringRef file, LLRContext &Ctx) const {
   ELFIO::elfio reader;
 
   Memory &Mem = Ctx.getMemory();
+  LLRRegisterFile &RegFile = Ctx.getRegisterFile();
 
   if (!reader.load(file)) {
     report_fatal_error(llvm::Twine("Failed to load elf file: ") + file);
     return;
   }
+
+  auto entry_point = reader.get_entry();
+  dbgs() << "Setting entry point: 0x";
+  dbgs().write_hex(entry_point);
+  dbgs() << "\n";
+
+  RegFile.getPC().set((uint32_t)entry_point);
 
   for (ELFIO::segment *segment : reader.segments) {
 
@@ -43,7 +53,6 @@ void ELFLoader::loadFile(StringRef file, LLRContext &Ctx) const {
         dbgs() << ", size: " << Size;
         dbgs() << "\n";
     );
-
     if (Size == 0) {
       continue;
     }
