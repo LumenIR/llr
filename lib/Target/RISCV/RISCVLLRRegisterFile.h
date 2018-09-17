@@ -16,6 +16,9 @@
 #include "RISCVGenRegisterInfo.inc"
 #undef GET_REGINFO_ENUM
 
+#include <vector>
+#include <array>
+
 
 namespace llr {
 
@@ -29,12 +32,14 @@ public:
 
   virtual LLRRegister& getRegisterById(unsigned RegisterId) const override;
 
+  virtual LLRRegister& getPC() const override;
+
+
 protected:
   LLRRegister *PC;
-  LLRRegister *SP;
-  LLRRegister *FP;
 
-
+  std::array<uint8_t, 32*4> GPR_storage;
+  std::array<LLRRegister*, 32> GPRRegisters;
 
 }; // class RISCVLLRRegisterFile
 

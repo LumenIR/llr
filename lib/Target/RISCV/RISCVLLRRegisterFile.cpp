@@ -8,6 +8,10 @@ using namespace llr;
 
 
 RISCVLLRRegisterFile::RISCVLLRRegisterFile() {
+  for (int i = 0; i < 32; ++i) {
+    GPRRegisters[i] = new ProxyRegister(RISCV::X0 + i, RISCV::GPRRegClassID, 4, GPR_storage.data() + 4 * i);
+  }
+
   PC = new SimpleRegister(0, 0, 4);
 }
 
