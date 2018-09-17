@@ -12,6 +12,11 @@
 
 #include "llr/Decoder/LLRDecoder.h"
 
+#include "llvm/MC/MCStreamer.h"
+#include "llvm/MC/MCSubtargetInfo.h"
+#include "llvm/MC/MCInstPrinter.h"
+
+
 namespace llvm {
   class MCDisassembler;
 }
@@ -29,7 +34,16 @@ public:
   virtual LLRInst decode(llvm::ArrayRef<uint8_t> data, const MemoryAddress &Address) const override;
 
 private:
-  llvm::MCDisassembler *disasm;
+  std::unique_ptr<llvm::MCDisassembler> disasm;
+  std::unique_ptr<llvm::MCStreamer> Streamer;
+
+  std::unique_ptr<llvm::MCSubtargetInfo> STI;
+  std::unique_ptr<llvm::MCInstPrinter> IP;
+
+  std::unique_ptr<llvm::MCRegisterInfo> MRI;
+  std::unique_ptr<llvm::MCAsmInfo> MAI;
+
+  std::unique_ptr<llvm::MCInstrInfo> MCII;
 
 
 }; // class RISCVLLRDecoder
