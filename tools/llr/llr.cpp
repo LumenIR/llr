@@ -95,7 +95,16 @@ int main(int Argc, const char **Argv) {
 
   ELFLoader loader;
 
-  InitializeAllTargets();
+//  InitializeAllTargets();
+
+  // Initialize targets and assembly printers/parsers.
+  InitializeAllTargetInfos();
+  InitializeAllTargetMCs();
+  InitializeAllAsmParsers();
+  InitializeAllAsmPrinters();
+  InitializeAllDisassemblers();
+
+
   registry::InitializeAllLLRTargets();
 
   LLRTarget *llrTarget = registry::getLLRTarget(Triple("riscv"));
