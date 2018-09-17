@@ -13,6 +13,8 @@
 #include "llr/Memory/MemoryAddress.h"
 
 #include "llvm/ADT/ArrayRef.h"
+#include "llvm/Support/Debug.h"
+#include "llvm/Support/raw_ostream.h"
 
 #include <vector>
 #include <cassert>
@@ -63,6 +65,30 @@ public:
 
   const MemoryAddress & getAddress() const {
     return Address;
+  }
+
+  void dump() const {
+    print(llvm::dbgs());
+  }
+
+  void print(llvm::raw_ostream &OS) const {
+    OS << "MAR ";
+    switch (Status) {
+    case MAS::Forbidden: OS << "Forbidden"; break;
+    case MAS::NotFound:  OS << "NotFound "; break;
+    case MAS::ReadOK:    OS << "ReadOK   "; break;
+    case MAS::WriteOK:   OS << "WriteOK  "; break;
+    default:        OS << "Unknown Status"; break;
+    }
+    OS << "\n";
+
+    for(int i = 0; i < data.size(); ++i) {
+      OS << "0x";
+      OS.write_hex(Address + i);
+      OS << " 0x";
+      OS.write_hex(data[i]);
+      OS << "\n";
+    }
   }
 
 public:
