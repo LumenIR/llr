@@ -39,41 +39,8 @@ using namespace llvm;
 using namespace llvm::sys;
 using namespace llvm::object;
 
-
-
-static const Target *getTarget(const ObjectFile *Obj = nullptr) {
-  // Figure out the target triple.
-  llvm::Triple TheTriple("unknown-unknown-unknown");
-  std::string TripleName("riscv-unknown-unknown");
-  std::string ArchName = "riscv";
-
-  if (TripleName.empty()) {
-   if (Obj) {
-     auto Arch = Obj->getArch();
-     TheTriple.setArch(Triple::ArchType(Arch));
-    } else {
-        TheTriple.setTriple(Triple::normalize(TripleName));
-        // Use the triple, but also try to combine with ARM build attributes.
-    }
-  }
-  // Get the target specific parser.
-  std::string Error;
-  const Target *TheTarget = TargetRegistry::lookupTarget(ArchName, TheTriple,
-                                                         Error);
-  if (!TheTarget) {
-    if (Obj) {
-
-    } else {
-      errs() << "can't find target: " << Error;
-      errs() << Obj->getFileName() << "can't find target: " << Error;
-      exit(1);
-    }
-  }
-
-  // Update the triple name and return the found target.
-  TripleName = TheTriple.getTriple();
-  return TheTarget;
-}
+static cl::opt<std::string>
+        InputFilename(cl::Positional, cl::desc("<input file>"), cl::init("a.out"));
 
 
 namespace llr {
@@ -91,7 +58,7 @@ int main(int Argc, const char **Argv) {
 
   //  llvm_shutdown_obj Shutdown;
 
-  StringRef file = "a.out";
+  StringRef file = InputFilename;
 
   ELFLoader loader;
 
