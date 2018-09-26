@@ -91,6 +91,46 @@ public:
     }
   }
 
+  uint64_t asUint64() {
+    assert(data.size() == 8);
+    return *reinterpret_cast<const uint64_t*>(getData().data());
+  }
+
+  int64_t asInt64() {
+    assert(data.size() == 8);
+    return *reinterpret_cast<const int64_t*>(getData().data());
+  }
+
+  uint32_t asUint32() {
+    assert(data.size() == 4);
+    return *reinterpret_cast<const uint32_t*>(getData().data());
+  }
+
+  int32_t asInt32() {
+    assert(data.size() == 4);
+    return *reinterpret_cast<const int32_t*>(getData().data());
+  }
+
+  uint16_t asUint16() {
+    assert(data.size() == 2);
+    return *reinterpret_cast<const uint16_t*>(getData().data());
+  }
+
+  int16_t asInt16() {
+    assert(data.size() == 2);
+    return *reinterpret_cast<const int16_t*>(getData().data());
+  }
+
+  uint8_t asUint8() {
+    assert(data.size() == 1);
+    return *reinterpret_cast<const uint8_t*>(getData().data());
+  }
+
+  int8_t asInt8() {
+    assert(data.size() == 1);
+    return *reinterpret_cast<const int8_t*>(getData().data());
+  }
+
 public:
   MemoryAddress Address;
   MemoryAccessStatus Status;
