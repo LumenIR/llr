@@ -28,13 +28,12 @@ MemoryAccessResult RISCVLLRFetcher::fetchNext(const LLRContext& Ctx) const {
    dbgs().write_hex(pcValue);
    dbgs() << "\n";
 
-   PC.set(pcValue + 4);
 
    Memory &Mem = Ctx.getMemory();
 
    MemoryAccessResult res = Mem.read({pcValue}, 4);
-   dbgs() << "Fetched: ";
-   res.dump();
+//   dbgs() << "Fetched: ";
+//   res.dump();
 
    return res;
 }

@@ -24,6 +24,7 @@ namespace llvm {
 namespace llr {
 
 class LLRInst;
+class LLRContext;
 class MemoryAddress;
 
 class RISCVLLRDecoder : public LLRDecoder {
@@ -31,7 +32,7 @@ public:
   RISCVLLRDecoder();
 
 
-  virtual LLRInst decode(llvm::ArrayRef<uint8_t> data, const MemoryAddress &Address) const override;
+  virtual LLRInst decode(llvm::ArrayRef<uint8_t> data, const MemoryAddress &Address, LLRContext &Ctx) const override;
 
 private:
   std::unique_ptr<llvm::MCDisassembler> disasm;
