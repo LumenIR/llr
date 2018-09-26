@@ -18,13 +18,14 @@ namespace llr {
 
 class LLRInst;
 class MemoryAddress;
+class LLRContext;
 
 class LLRDecoder {
 public:
 
   virtual ~LLRDecoder() = default;
 
-  virtual LLRInst decode(llvm::ArrayRef<uint8_t> data, const MemoryAddress &Address) const = 0;
+  virtual LLRInst decode(llvm::ArrayRef<uint8_t> data, const MemoryAddress &Address, LLRContext &Ctx) const = 0;
 
 }; // class LLRDecoder
 

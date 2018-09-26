@@ -60,11 +60,11 @@ public:
 
 
   virtual RegisterAccessResult set(uint32_t data, SetMode mode = SetMode::EXACT) final {
-    set(llvm::ArrayRef<uint8_t>(reinterpret_cast<uint8_t*>(&data), 4), mode);
+    return set(llvm::ArrayRef<uint8_t>(reinterpret_cast<uint8_t*>(&data), 4), mode);
   }
 
   virtual RegisterAccessResult set(uint64_t data, SetMode mode = SetMode::EXACT) final {
-    set(llvm::ArrayRef<uint8_t>(reinterpret_cast<uint8_t*>(&data), 8), mode);
+    return set(llvm::ArrayRef<uint8_t>(reinterpret_cast<uint8_t*>(&data), 8), mode);
   }
 
 

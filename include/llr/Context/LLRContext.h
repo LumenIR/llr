@@ -31,6 +31,16 @@ public:
 
   virtual bool isRunning() const = 0;
 
+  bool isBranch() const {
+    return _isBranch;
+  };
+
+  void setBranch(bool b) {
+    _isBranch = b;
+  }
+
+private:
+  bool _isBranch;
 
 }; // class LLRContext
 
