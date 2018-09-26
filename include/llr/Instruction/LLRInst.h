@@ -42,12 +42,17 @@ class LLROperand {
     LLRRegister* Register;
   };
 
+public:
   bool isValid() const {
     return Kind != kInvalid;
   }
 
   bool isRegister() const {
     return Kind == kRegister;
+  }
+
+  bool isImm() const {
+    return Kind == kImmediate;
   }
 
   bool isMemoryAddress() const {
@@ -59,6 +64,11 @@ class LLROperand {
     return *Register;
   }
 
+  int64_t getImm() const {
+    assert(isImm() && "This is not a register operand");
+    return ImmVal;
+  }
+
   static LLROperand createRegisterOperand(LLRRegister *reg_ptr) {
     LLROperand op;
     op.Kind = kRegister;
@@ -66,6 +76,12 @@ class LLROperand {
     return op;
   }
 
+  static LLROperand createImmOperand(int64_t imm) {
+    LLROperand op;
+    op.Kind = kImmediate;
+    op.ImmVal = imm;
+    return op;
+  }
 };
 
 
@@ -73,7 +89,7 @@ class LLRInst {
   using MCInst = llvm::MCInst;
 
 public:
-  LLRInst(MCInst, void (*execution_func)(LLRContext &, LLRInst &));
+  LLRInst(MCInst, size_t Size, LLRContext&, void (*execution_func)(LLRContext &, LLRInst &));
   virtual ~LLRInst() = default;
 
   void execute(LLRContext &);
@@ -82,11 +98,26 @@ public:
     return MCInstr;
   }
 
+  size_t getSize() const { return Size; }
+
+  unsigned getOpcode() const {
+    return MCInstr.getOpcode();
+  }
+
+  unsigned getNumOperands() const {
+    return operands.size();
+  }
+
+  LLROperand getOperand(size_t Idx) const {
+    return operands[Idx];
+  }
+
   void print(llvm::raw_ostream &OS) const;
   void dump() const;
 
 private:
   const llvm::MCInst MCInstr;
+  std::size_t Size;
   llvm::SmallVector<LLROperand, 8> operands;
 
   void (*execution_func)(LLRContext &, LLRInst &);
