@@ -13,7 +13,7 @@ using namespace llr;
 using namespace llvm;
 
 
-LLRInst::LLRInst(MCInst Instr, size_t S, LLRContext &Ctx, void(*func)(LLRContext&, LLRInst&)) :
+LLRInst::LLRInst(MCInst Instr, size_t S, LLRContext &Ctx, llr_execution_func func) :
   MCInstr(Instr),
   Size(S),
   execution_func(func) {

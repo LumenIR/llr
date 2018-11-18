@@ -14,6 +14,7 @@
 
 #include "llvm/MC/MCInst.h"
 
+#include <functional>
 #include <cassert>
 
 namespace llvm {
@@ -84,12 +85,15 @@ public:
   }
 };
 
+class LLRInst;
+
+using llr_execution_func = std::function<void (LLRContext &, LLRInst &)>;
 
 class LLRInst {
   using MCInst = llvm::MCInst;
 
 public:
-  LLRInst(MCInst, size_t Size, LLRContext&, void (*execution_func)(LLRContext &, LLRInst &));
+  LLRInst(MCInst, size_t Size, LLRContext&, llr_execution_func execution_func);
   virtual ~LLRInst() = default;
 
   void execute(LLRContext &);
@@ -120,7 +124,7 @@ private:
   std::size_t Size;
   llvm::SmallVector<LLROperand, 8> operands;
 
-  void (*execution_func)(LLRContext &, LLRInst &);
+  llr_execution_func execution_func;
 
 }; // class LLRInst
 
