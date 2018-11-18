@@ -127,6 +127,14 @@ if (NOT LLVM_INSTALL_TOOLCHAIN_ONLY)
     )
 endif()
 
+add_subdirectory(utils/TableGen)
+
+# All targets below may depend on all tablegen'd files.
+get_property(LLR_TABLEGEN_TARGETS GLOBAL PROPERTY LLR_TABLEGEN_TARGETS)
+add_custom_target(llr-tablegen-targets DEPENDS ${LLR_TABLEGEN_TARGETS})
+set_target_properties(llr-tablegen-targets PROPERTIES FOLDER "Misc")
+list(APPEND LLVM_COMMON_DEPENDS llr-tablegen-targets)
+
 include_directories(third_party/elfio/include)
 
 add_subdirectory(lib)
