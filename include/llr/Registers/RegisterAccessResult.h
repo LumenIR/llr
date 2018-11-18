@@ -97,6 +97,8 @@ public:
         return llvm::APFloat(asFloat());
     } else if (getSize() == 8) {
         return llvm::APFloat(asDouble());
+    } else {
+      llvm_unreachable("Cannot convert value as APFloat");
     }
   }
 

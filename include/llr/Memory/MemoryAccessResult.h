@@ -82,7 +82,7 @@ public:
     }
     OS << "\n";
 
-    for(int i = 0; i < data.size(); ++i) {
+    for(unsigned i = 0; i < data.size(); ++i) {
       OS << "0x";
       OS.write_hex(Address + i);
       OS << " 0x";

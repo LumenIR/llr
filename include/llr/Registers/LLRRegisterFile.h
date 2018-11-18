@@ -21,7 +21,7 @@ public:
 
   LLRRegisterFile(LLRRegisterFile&) = delete;
 
-  ~LLRRegisterFile() = default;
+  virtual ~LLRRegisterFile() = default;
 
   LLRRegisterFile() = default;
 

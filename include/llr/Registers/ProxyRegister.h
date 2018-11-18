@@ -8,7 +8,7 @@
 //===----------------------------------------------------------------------===//
 
 #ifndef LLR_REGISTERS_PROXYREGISTER_H
-#define LLR_REGISTERS_PROXYEREGISTER_H
+#define LLR_REGISTERS_PROXYREGISTER_H
 
 #include "LLRRegister.h"
 
@@ -54,5 +54,5 @@ private:
 
 } // end namespace llr
 
-#endif //LLR_REGISTERS_SIMPLEREGISTER_H
+#endif //LLR_REGISTERS_PROXYREGISTER_H
 
