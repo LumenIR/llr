@@ -59,7 +59,7 @@ void EmitExecutionFunctionMatcher(RecordKeeper &RK, raw_ostream &OS) {
   for(Record* rec: RK.getAllDerivedDefinitions("Instruction")) {
     StringRef name = rec->getName();
 
-    RecordVal* val = rec->getValue("exec_func");
+    RecordVal* val = rec->getValue("llr_exec_func");
     if (val != nullptr) {
       std::string func = val->getValue()->getAsUnquotedString();
       exec_funcs[func].push_back(rec);
